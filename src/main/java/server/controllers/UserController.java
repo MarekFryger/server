@@ -38,15 +38,9 @@ public class UserController {
             return ResponseEntity.ok(users); 
     }
 
-    @GetMapping("/activateUser")
-    public ResponseEntity<UserToAdminListDTO> activateUser(@RequestParam String id) {
-            UserToAdminListDTO user = userService.activateUser(id);
-            return ResponseEntity.ok(user);
-    }
-
-    @GetMapping("/deactivateUser")
-    public ResponseEntity<UserToAdminListDTO> deactivateUser(@RequestParam String id) {
-        UserToAdminListDTO user = userService.deactivateUser(id);
+    @GetMapping("/changeUserActivity")
+    public ResponseEntity<UserToAdminListDTO> changeUserActivity(@RequestParam String id) {
+        UserToAdminListDTO user = userService.changeUserActivity(id);
         return ResponseEntity.ok(user);
     }
 

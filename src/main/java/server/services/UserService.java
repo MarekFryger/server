@@ -38,26 +38,14 @@ public class UserService {
                 .toList();
     }
 
-    public UserToAdminListDTO activateUser(String id) {
+    public UserToAdminListDTO changeUserActivity(String id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            user.get().setActive(true);
+            user.get().setActive(!user.get().getActive());
             User userToSave = user.get();
             return mapper.userToUserAdminListDto(userRepository.save(userToSave));
         } else {
             throw new NoSuchElementException("User not found");
         }
     }
-
-    public UserToAdminListDTO deactivateUser(String id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            user.get().setActive(false);
-            User userToSave = user.get();
-            return mapper.userToUserAdminListDto(userRepository.save(userToSave));
-        } else {
-            throw new NoSuchElementException("User not found");
-        }
-    }
-
 }
